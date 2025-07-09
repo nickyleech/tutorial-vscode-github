@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - VS Code & GitHub Tutorial</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center">
+                        <a href="/" class="text-2xl font-bold text-gray-900 hover:text-blue-600">VS Code & GitHub Tutorial</a>
+                        <span class="ml-3 px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Examples</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="https://github.com/nickyleech/tutorial-vscode-github" target="_blank" class="text-gray-600 hover:text-gray-900">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="/" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Back to Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Practical Examples</h1>
+                <p class="text-gray-600">Working code examples to accompany the VS Code and GitHub tutorial</p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Express.js API Example -->
+                <div class="bg-white shadow-sm rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Express.js API</h3>
+                    <p class="text-gray-600 mb-4">Simple REST API with authentication endpoints and middleware</p>
+                    <div class="space-y-2">
+                        <a href="#" onclick="showCode('index.js')" class="block text-blue-600 hover:text-blue-800">📄 index.js</a>
+                        <a href="#" onclick="showCode('package.json')" class="block text-blue-600 hover:text-blue-800">📦 package.json</a>
+                    </div>
+                </div>
+
+                <!-- Testing Example -->
+                <div class="bg-white shadow-sm rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Unit Tests</h3>
+                    <p class="text-gray-600 mb-4">Jest test suite demonstrating TDD approach</p>
+                    <div class="space-y-2">
+                        <a href="#" onclick="showCode('auth.test.js')" class="block text-blue-600 hover:text-blue-800">🧪 auth.test.js</a>
+                    </div>
+                </div>
+
+                <!-- CI/CD Example -->
+                <div class="bg-white shadow-sm rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">GitHub Actions</h3>
+                    <p class="text-gray-600 mb-4">Complete CI/CD pipeline with testing and deployment</p>
+                    <div class="space-y-2">
+                        <a href="#" onclick="showCode('ci.yml')" class="block text-blue-600 hover:text-blue-800">⚙️ ci.yml</a>
+                        <a href="#" onclick="showCode('.gitignore')" class="block text-blue-600 hover:text-blue-800">🚫 .gitignore</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Display Area -->
+            <div id="code-display" class="mt-8 bg-white shadow-sm rounded-lg p-6 hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="code-title" class="text-lg font-semibold text-gray-900"></h3>
+                    <button onclick="hideCode()" class="text-gray-500 hover:text-gray-700">✕</button>
+                </div>
+                <pre><code id="code-content" class="language-javascript"></code></pre>
+            </div>
+
+            <!-- Claude Code Examples -->
+            <div class="mt-12 bg-white shadow-sm rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">🤖 Claude Code Examples</h2>
+                
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Code Analysis</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <code class="text-sm text-gray-800">claude "Explain what this Express.js application does"</code>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Add Features</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <code class="text-sm text-gray-800">claude "Add a new endpoint for user registration"</code>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Security Review</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <code class="text-sm text-gray-800">claude "Review this code for security vulnerabilities"</code>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Write Tests</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <code class="text-sm text-gray-800">claude "Add integration tests for the user endpoints"</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="mt-8 bg-blue-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-blue-900 mb-4">🚀 Getting Started</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-medium text-blue-800 mb-2">1. Clone the repository</h4>
+                        <div class="bg-blue-100 p-3 rounded-md">
+                            <code class="text-sm text-blue-800">git clone https://github.com/nickyleech/tutorial-vscode-github.git</code>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-blue-800 mb-2">2. Install dependencies</h4>
+                        <div class="bg-blue-100 p-3 rounded-md">
+                            <code class="text-sm text-blue-800">cd tutorial-vscode-github/examples && npm install</code>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-blue-800 mb-2">3. Run the application</h4>
+                        <div class="bg-blue-100 p-3 rounded-md">
+                            <code class="text-sm text-blue-800">npm run dev</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="text-center text-gray-600">
+                    <p>Created with 🤖 <a href="https://claude.ai/code" class="text-blue-600 hover:text-blue-800">Claude Code</a></p>
+                    <p class="mt-2 text-sm">A comprehensive guide to VS Code, GitHub, and AI-assisted development</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const codeFiles = {
+            'index.js': `const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Welcome to the VS Code GitHub Tutorial API!',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      users: '/users',
+      auth: '/auth/login'
+    }
+  });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+app.post('/auth/login', (req, res) => {
+  const { username, password } = req.body;
+  
+  // Simple validation
+  if (!username || !password) {
+    return res.status(400).json({ 
+      error: 'Username and password are required' 
+    });
+  }
+  
+  // Mock authentication
+  if (username === 'admin' && password === 'password') {
+    res.json({ 
+      message: 'Login successful',
+      token: 'mock-jwt-token-123',
+      user: { id: 1, username: 'admin' }
+    });
+  } else {
+    res.status(401).json({ 
+      error: 'Invalid credentials' 
+    });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(\`Server running on port \${PORT}\`);
+});`,
+            'package.json': `{
+  "name": "vscode-github-tutorial-examples",
+  "version": "1.0.0",
+  "description": "Example code for VS Code and GitHub tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "jest": "^29.7.0"
+  }
+}`,
+            'auth.test.js': `const request = require('supertest');
+const app = require('./index');
+
+describe('Authentication API', () => {
+  test('POST /auth/login - successful login', async () => {
+    const response = await request(app)
+      .post('/auth/login')
+      .send({
+        username: 'admin',
+        password: 'password'
+      });
+    
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe('Login successful');
+    expect(response.body.token).toBeDefined();
+  });
+
+  test('POST /auth/login - invalid credentials', async () => {
+    const response = await request(app)
+      .post('/auth/login')
+      .send({
+        username: 'admin',
+        password: 'wrongpassword'
+      });
+    
+    expect(response.status).toBe(401);
+    expect(response.body.error).toBe('Invalid credentials');
+  });
+});`,
+            'ci.yml': `name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Run security audit
+      run: npm audit`,
+            '.gitignore': `# Dependencies
+node_modules/
+npm-debug.log*
+
+# Production builds
+/build
+/dist
+
+# Runtime data
+*.pid
+*.seed
+
+# Logs
+logs
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db`
+        };
+
+        function showCode(filename) {
+            const codeDisplay = document.getElementById('code-display');
+            const codeTitle = document.getElementById('code-title');
+            const codeContent = document.getElementById('code-content');
+            
+            codeTitle.textContent = filename;
+            codeContent.textContent = codeFiles[filename];
+            
+            // Determine language for highlighting
+            let language = 'javascript';
+            if (filename.endsWith('.yml') || filename.endsWith('.yaml')) {
+                language = 'yaml';
+            } else if (filename === 'package.json') {
+                language = 'json';
+            } else if (filename === '.gitignore') {
+                language = 'text';
+            }
+            
+            codeContent.className = `language-${language}`;
+            codeDisplay.classList.remove('hidden');
+            
+            // Re-highlight the code
+            hljs.highlightElement(codeContent);
+            
+            // Scroll to code display
+            codeDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideCode() {
+            document.getElementById('code-display').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
