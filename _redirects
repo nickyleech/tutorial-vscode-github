@@ -1,0 +1,4 @@
+# Redirects for Vercel deployment
+/              /index.html     200
+/examples      /examples.html  200
+/api/*         /api/index.js   200
